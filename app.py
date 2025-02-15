@@ -11,9 +11,12 @@ OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 if not OPENAI_API_KEY:
     raise ValueError("OPENAI_API_KEY not found in environment variables")
 
-from upsonic import Task, Agent
+from upsonic import Task, Agent, KnowledgeBase
 from upsonic.client.tools import Search
 
+my_resume = KnowledgeBase(
+    files = ["my_resume.pdf"]
+)
 task = Task(
     "Research latest news in Anthropic and OpenAI", 
     tools=[Search]
