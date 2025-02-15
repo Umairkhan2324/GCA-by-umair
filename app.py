@@ -18,7 +18,7 @@ class initial_repsonse(ObjectResponse):
     analysis : str
 
 class job_list(ObjectResponse):
-    jobs : str[list]
+    jobs : list[str]
 
 my_resume = KnowledgeBase(
     files = ["my_resume.pdf"]
