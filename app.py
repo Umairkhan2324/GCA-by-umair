@@ -37,7 +37,8 @@ job_search = Task(
 
 agent = Agent(
     "you are job searcher for me and shall find the best jobs out there for me ",
-    api_key=OPENAI_API_KEY  # Pass the API key to the agent
+    api_key=OPENAI_API_KEY ,
+    model="openai/gpt-4o" # Pass the API key to the agent
 )
 
 # Running the task
