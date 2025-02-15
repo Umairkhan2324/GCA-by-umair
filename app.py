@@ -17,6 +17,9 @@ from upsonic.client.tools import Search, ComputerUse
 class initial_repsonse(ObjectResponse):
     analysis : str
 
+class job_list(ObjectResponse):
+    jobs : str[list]
+
 my_resume = KnowledgeBase(
     files = ["my_resume.pdf"]
 )
@@ -25,19 +28,20 @@ Initial_analysis = Task(
     context = ["my_resume"],
     response_format = initial_repsonse
 )
-task2 = Task(
+job_search = Task(
     "You are going to understand the analysis given by task1 and search for the most suited jobs according to it across multiple platfroms.",
     context = ["my_resume","Initial_analysis"],
-    tool = [Search,ComputerUse]
+    tool = [Search,ComputerUse],
+    response_format = job_list
 )
 
 agent = Agent(
-    "AI journalist",
+    "you are job searcher for me and shall find the best jobs out there for me ",
     api_key=OPENAI_API_KEY  # Pass the API key to the agent
 )
 
 # Running the task
-agent.print_do(task)
+agent.print_do(job_search)
 
 def async_wrapper(handler):
     if os.name == 'posix':  # Check if the OS is Unix-like
