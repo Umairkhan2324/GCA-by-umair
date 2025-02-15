@@ -25,12 +25,12 @@ my_resume = KnowledgeBase(
 )
 Initial_analysis = Task(
     "You are acting as a recruiter and going to deeply analyze and understand resume given in knowledge base and tell which job will be best for this person and will write about what type of jobs with what specifications will be best for him", 
-    context = ["my_resume"],
+    context = [my_resume],
     response_format = initial_repsonse
 )
 job_search = Task(
     "You are going to understand the analysis given by task1 and search for the most suited jobs according to it across multiple platfroms.",
-    context = ["my_resume","Initial_analysis"],
+    context = [my_resume,Initial_analysis],
     tool = [Search,ComputerUse],
     response_format = job_list
 )
